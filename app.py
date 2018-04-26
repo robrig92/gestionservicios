@@ -1,7 +1,14 @@
 from flask import Flask
+from mongoengine import *
+from models.cliente import Cliente
+
+
 app = Flask(__name__)
 
 
 @app.route('/')
 def hello_world():
-    return '<h1>Hello World!</h1>'
+	clientes = ''
+	for cliente in Cliente.objects:
+		clientes += cliente.nombreContacto
+	return clientes
