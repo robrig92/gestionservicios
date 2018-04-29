@@ -1,10 +1,19 @@
 from flask import Flask
 from mongoengine import *
 from .models.cliente import *
-app = Flask(__name__)
 from .controllers.cliente_controller import ClienteController
+from .controllers.usuario_controller import UsuarioController
+
+app = Flask(__name__)
+
 
 @app.route('/api/clientes')
-def hello_world():
+def clientes_index():
 	clienteController = ClienteController()
-	return clienteController.index().to_json()
+	return clienteController.index()
+
+
+@app.route('/api/usuarios')
+def usuarios_index():
+	usuarioController = UsuarioController()
+	return usuarioController.index()
