@@ -26,14 +26,17 @@ def roles_index():
 	rolController = RolController()
 	return rolController.index()
 
-@app.route('/api/roles/<hashId>', methods=['GET', 'PATCH'])
-def roles_show_patch(hashId):
-	if request.method == 'GET':
-		rolController = RolController()
-		return rolController.show(hashId)
-	elif request.method == 'PATCH':
-		RolController = RolController()
-		return RolController.patch(hashId, request)
+@app.route('/api/roles/<hashId>', methods=['GET'])
+def roles_show(hashId):
+	print ('Request GET. Show rol with hashId = ' + hashId )
+	rolController = RolController()
+	return rolController.show(hashId)
+
+@app.route('/api/roles/<hashId>', methods=['PATCH'])
+def roles_update(hashId):
+	print ('Request PATCH. Update rol with hashId = ' + hashId )
+	rolController = RolController()
+	return rolController.patch(hashId, request)
 
 @app.route('/api/roles/', methods=['POST'])
 def roles_store():

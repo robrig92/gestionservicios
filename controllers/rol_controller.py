@@ -31,13 +31,13 @@ class RolController():
 		return 'success'
 
 	def patch(self, hashId, request):
-		rol = Rol.objects(hashId=hashId)
-		if request.form['enabled'] == 1:
+		rol = Rol.objects.get(hashId=hashId)
+		if request.form.get('nombre', 1) == 1:
 			enabled = True
 		else:
 			enabled =  False
 		rol.enabled = enabled
 		rol.updatedAt = datetime.datetime.utcnow()
-		rol.nombre = request.form['nombre']
+		rol.nombre = request.form.get('nombre', 'VALOR POR DEFECTO')
 		rol.save()
 		return 'success'
