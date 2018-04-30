@@ -1,6 +1,7 @@
 from flask import Flask, request
 from mongoengine import *
 from .controllers.cliente_controller import cliente
+from .controllers.tipoDispositivo_controller import tipoDispositivo
 from .controllers.usuario_controller import UsuarioController
 from .controllers.rol_controller import RolController
 from .middleware.HTTPMethodOverrideMiddleware import HTTPMethodOverrideMiddleware
@@ -43,4 +44,5 @@ def roles_store():
 	rolController = RolController()
 	return rolController.store(request)
 
-app.register_blueprint( cliente , url_prefix='/api/cliente')
+app.register_blueprint( cliente 			, url_prefix='/api/cliente')
+app.register_blueprint( tipoDispositivo 	, url_prefix='/api/tipodispositivo')
