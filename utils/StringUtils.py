@@ -13,7 +13,7 @@ class StringUtils():
 
 	"""
 	@staticmethod
-	def randomHash(self):
+	def randomHash():
 		"""
 			Sprint: 1
 

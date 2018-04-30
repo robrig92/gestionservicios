@@ -1,6 +1,6 @@
 from flask import Flask, request
 from mongoengine import *
-from .controllers.cliente_controller import ClienteController
+from .controllers.cliente_controller import cliente
 from .controllers.usuario_controller import UsuarioController
 from .controllers.rol_controller import RolController
 from .middleware.HTTPMethodOverrideMiddleware import HTTPMethodOverrideMiddleware
@@ -9,10 +9,10 @@ app = Flask(__name__)
 app.wsgi_app = HTTPMethodOverrideMiddleware(app.wsgi_app)
 
 # Routes para clientes
-@app.route('/api/clientes')
-def clientes_index():
-	clienteController = ClienteController()
-	return clienteController.index()
+#@app.route('/api/clientes')
+#def clientes_index():
+#	clienteController = ClienteController()
+#	return clienteController.index()
 
 # Routes para usuarios
 @app.route('/api/usuarios')
@@ -42,3 +42,5 @@ def roles_update(hashId):
 def roles_store():
 	rolController = RolController()
 	return rolController.store(request)
+
+app.register_blueprint( cliente , url_prefix='/api/cliente')
