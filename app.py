@@ -3,37 +3,39 @@ from mongoengine import *
 from .controllers.cliente_controller import ClienteController
 from .controllers.usuario_controller import UsuarioController
 from .controllers.rol_controller import RolController
-
+from .middleware.HTTPMethodOverrideMiddleware import HTTPMethodOverrideMiddleware
 
 app = Flask(__name__)
+app.wsgi_app = HTTPMethodOverrideMiddleware(app.wsgi_app)
 
-
+# Routes para clientes
 @app.route('/api/clientes')
 def clientes_index():
 	clienteController = ClienteController()
 	return clienteController.index()
 
+# Routes para usuarios
 @app.route('/api/usuarios')
 def usuarios_index():
 	usuarioController = UsuarioController()
 	return usuarioController.index()
 
+# Routes para roles
 @app.route('/api/roles')
 def roles_index():
 	rolController = RolController()
 	return rolController.index()
 
-@app.route('/api/roles/<hashId>')
-def roles_show(hashId):
-	rolController = RolController()
-	return rolController.show(hashId)
+@app.route('/api/roles/<hashId>', methods=['GET', 'PATCH'])
+def roles_show_patch(hashId):
+	if request.method == 'GET':
+		rolController = RolController()
+		return rolController.show(hashId)
+	elif request.method == 'PATCH':
+		RolController = RolController()
+		return RolController.patch(hashId, request)
 
 @app.route('/api/roles/', methods=['POST'])
 def roles_store():
 	rolController = RolController()
 	return rolController.store(request)
-
-@app.route('/api/roles/<hashId>', methods={'PATCH'})
-def roles_patch(hashId):
-	RolController = RolController()
-	return RolController.patch(hashId, request)
