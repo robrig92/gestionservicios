@@ -1,6 +1,6 @@
+import time
 import hashlib
 import datetime
-import time
 
 
 class StringUtils():
@@ -18,7 +18,7 @@ class StringUtils():
 			Sprint: 1
 
 				Método encargado de generar random
-			hash usando el tiempo como llave. 
+			hash usando el tiempo como llave.
 
 				Este método hace uso del algoritmo de
 			encriptamiento sha256.

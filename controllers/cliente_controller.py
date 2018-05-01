@@ -1,13 +1,13 @@
+import time
+import datetime
+from bson import ObjectId
 from flask import Blueprint, request
 from ..models.cliente import Cliente
 from ..utils.StringUtils import StringUtils
-import datetime
-import time
-from bson import ObjectId
 
 
 cliente = Blueprint('cliente', __name__)
-"""	    
+"""
 
 	Controller encargado de las operaciones relacionadas
 con clientes.
@@ -83,7 +83,7 @@ def update( hashId ):
 	cliente.razonSocial 	= request.form.get('razon_social',  'Razón social por defecto' + str(time.time()) )
 	cliente.nombreComercial = request.form.get('nombre_comercial',  'Nombre Comercial por defecto' + str(time.time()) )
 	cliente.direccion 		= request.form.get('direccion',  'Dirección por defecto' + str(time.time()) )
-	cliente.telefono 		= request.form.get('telefono',  'Teléfono por defecto' + str(time.time()) ) 
+	cliente.telefono 		= request.form.get('telefono',  'Teléfono por defecto' + str(time.time()) )
 	cliente.email	 		= request.form.get('email',  'Email por defecto' + str(time.time()) )
 	cliente.save()
 	return 'success update'
