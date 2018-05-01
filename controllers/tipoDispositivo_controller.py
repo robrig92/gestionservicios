@@ -7,7 +7,13 @@ from bson import ObjectId
 
 
 tipoDispositivo = Blueprint('tipoDispositivo', __name__)
+"""	    
 
+	Controller encargado de las operaciones relacionadas
+con tipo de dispositivos
+
+    @author Paulo_Angeles.
+"""
 @tipoDispositivo.route('', methods=['GET'])
 def list():
 	"""
