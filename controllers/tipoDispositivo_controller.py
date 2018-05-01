@@ -10,18 +10,45 @@ tipoDispositivo = Blueprint('tipoDispositivo', __name__)
 
 @tipoDispositivo.route('', methods=['GET'])
 def list():
+	"""
+		Sprint: 1.
+
+			Método encargado de listar todos
+		los tipo de dispositivos existentes
+		en el sistema
+
+		@author Paulo_Angeles.
+	"""
 	print("REQUEST GET. List tipo dispositivo.")
 	tiposDispositivo = TipoDispositivo.objects()
 	return tiposDispositivo.to_json()
 
 @tipoDispositivo.route('/<hashId>', methods=['GET'])
-def detail( hashId ):
+def get( hashId ):
+	"""
+		Sprint: 1.
+
+			Método encargado de obtener un
+		tipo de dispositivo determinado
+		mediante su campo hash_id.
+
+		@author Paulo_Angeles.
+	"""
 	print("REQUEST GET. Detail tipo dispositivo hashId = " + hashId )
 	tipoDispositivo = TipoDispositivo.objects.get(hashId=hashId)
 	return tipoDispositivo.to_json()
 
 @tipoDispositivo.route('', methods=['POST'])
 def save( ):
+
+	"""
+		Sprint: 1.
+
+			Método encargado de persistir un
+		tipo de dispositivo en el sitema.
+
+		@author Paulo_Angeles.
+	"""
 	print("REQUEST POST. Create tipo dispositivo.")
 	tipoDispositivo 					= TipoDispositivo()
 	tipoDispositivo.enabled 			= True
@@ -35,6 +62,14 @@ def save( ):
 
 @tipoDispositivo.route('/<hashId>', methods=['PATCH'])
 def update( hashId ):
+	"""
+		Sprint: 1.
+
+			Método encargado de actualizar un
+		tipo de dispositivo en el sitema.
+
+		@author Paulo_Angeles.
+	"""
 	print("REQUEST PATCH. Update tipo dispositivo hashId = " + hashId )
 	tipoDispositivo 					= TipoDispositivo.objects.get(hashId=hashId)
 	tipoDispositivo.updatedAt 			= datetime.datetime.utcnow()

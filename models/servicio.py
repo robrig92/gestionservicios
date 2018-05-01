@@ -4,12 +4,12 @@ from mongoengine import *
 connect('gestionservicios')
 
 
-class TipoDispositivo(Document):
+class Servicio(Document):
 	"""
 		Sprint: 1
 
-		Modelo  que representa tipos 
-	de dispositvos en el sistema.
+			Modelo  que representa un Servicio
+		en el sistema.
 
 		@author Paulo_Angeles.
 	"""
@@ -20,4 +20,7 @@ class TipoDispositivo(Document):
 	hashId 				= StringField()
 	usuarioCreador 		= ObjectIdField()
 	tipo 				= StringField()
-	meta 				=  { 'collection' :  'tipoDispositivo' }
+	descripcion 		= StringField()
+	precio				= DecimalField()
+	observaciones		= StringField()
+	tiempoPromedio		= StringField()
