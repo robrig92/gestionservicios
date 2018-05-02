@@ -2,7 +2,7 @@ from ..models.estatus import Estatus
 from flask import Blueprint, request
 
 
-estatus = Blueprint('rol', __name__)
+estatus = Blueprint('estatus', __name__)
 """
     Controlador de modelo Estatus.
 
@@ -21,21 +21,21 @@ def index():
     estatus = Estatus.objects()
     return estatus.to_json()
 
-@estatus.route('/<hashId>', methods=['GET'])
-def show(hashId):
+@estatus.route('/<id>', methods=['GET'])
+def show(id):
 	"""
 		Sprint 1:
 
 		Este método recupera un documento estatus por medio
-		de su hashId.
+		de su id.
 
 		@author Roberto_Padilla
 	"""
-	estatus = Estatus.objects(hashId=hashId)
+	estatus = Estatus.objects(id=id)
 	return estatus.to_json()
 
 @estatus.route('/', methods=['POST'])
-def store(request):
+def store():
 	"""
 		Sprint 1:
 
@@ -44,35 +44,35 @@ def store(request):
 
 		@author Roberto_Padilla
 	"""
-	if request.form['enabled'] == 1:
+	if request.form.get('enabled') == '1':
 		enabled = True
 	else:
 		enabled = False
 	estatus = Estatus()
 	estatus.enabled = enabled
 	estatus.nombre = request.form.get('nombre', 'Nombre por defecto')
-    estatus.descripcion = request.form.get('descripcion', 'Descripcion por defecto')
-    estatus.save()
+	estatus.descripcion = request.form.get('descripcion', 'Descripcion por defecto')
+	estatus.save()
 	return 'success'
 
-@estatus.route('/<hashId>', methods=['PATCH'])
-def patch(hashId, request):
+@estatus.route('/<id>', methods=['PATCH'])
+def patch(id):
 	"""
 		Sprint 1:
 
 		Este método actualiza la información de un documento
 		en la base de datos identificándolo por medio de
-		su hashId.
+		su id.
 
 		@author Roberto_Padilla
 	"""
-	estatus = Estatus.objects.get(hashId=hashId)
-	if request.form.get('nombre', 1) == 1:
+	estatus = Estatus.objects.get(id=id)
+	if request.form.get('enabled') == '1':
 		enabled = True
 	else:
 		enabled =  False
 	estatus.enabled = enabled
 	estatus.nombre = request.form.get('nombre', 'VALOR POR DEFECTO')
-    estatus.descripcion = request.form.get('descripcion', 'Descripción por defecto')
-    estatus.save()
+	estatus.descripcion = request.form.get('descripcion', 'Descripción por defecto')
+	estatus.save()
 	return 'success'

@@ -33,11 +33,11 @@ def show(hashId):
 
 		@author Roberto_Padilla
 	"""
-	roles = Rol.objects(hashId=hashId)
-	return roles.to_json()
+	rol = Rol.objects(hashId=hashId)
+	return rol.to_json()
 
 @rol.route('/', methods=['POST'])
-def store(request):
+def store():
 	"""
 		Sprint 1:
 
@@ -46,7 +46,7 @@ def store(request):
 
 		@author Roberto_Padilla
 	"""
-	if request.form['enabled'] == 1:
+	if request.form.get('enabled') == '1':
 		enabled = True
 	else:
 		enabled = False
@@ -61,7 +61,7 @@ def store(request):
 	return 'success'
 
 @rol.route('/<hashId>', methods=['PATCH'])
-def patch(hashId, request):
+def patch(hashId):
 	"""
 		Sprint 1:
 
@@ -72,7 +72,7 @@ def patch(hashId, request):
 		@author Roberto_Padilla
 	"""
 	rol = Rol.objects.get(hashId=hashId)
-	if request.form.get('nombre', 1) == 1:
+	if request.form.get('enabled') == '1':
 		enabled = True
 	else:
 		enabled =  False
