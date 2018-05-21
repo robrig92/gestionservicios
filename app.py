@@ -1,4 +1,5 @@
 from mongoengine import *
+from flask_cors import CORS
 from flask import Flask, request
 from .controllers.rol_controller import rol
 from .controllers.folio_controller import folio
@@ -14,6 +15,7 @@ from .controllers.tipoDispositivo_controller import tipoDispositivo
 from .middleware.HTTPMethodOverrideMiddleware import HTTPMethodOverrideMiddleware
 
 app = Flask(__name__)
+CORS(app)
 app.wsgi_app = HTTPMethodOverrideMiddleware(app.wsgi_app)
 
 app.register_blueprint(cliente 			, url_prefix='/api/cliente')
