@@ -16,3 +16,4 @@ class Cliente(Document):
 	direccion = StringField()
 	telefono = StringField()
 	email = StringField()
+	password = StringField()

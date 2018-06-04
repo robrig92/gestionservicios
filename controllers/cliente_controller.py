@@ -57,12 +57,13 @@ def save( ):
 	cliente.updatedAt 		= datetime.datetime.utcnow()
 	cliente.hashId 			= StringUtils.randomHash();
 	cliente.usuarioCreador 	= ObjectId(request.form.get('usuarioCreador', '5adf9abc30c9451b476ee260' ) )
-	cliente.nombreContacto 	= request.form.get('nombre_contacto',  'Nombre por defecto')
-	cliente.razonSocial 	= request.form.get('razon_social',  'Razón social por defecto')
-	cliente.nombreComercial = request.form.get('nombre_comercial',  'Nombre Comercial por defecto')
+	cliente.nombreContacto 	= request.form.get('nombreContacto',  'Nombre por defecto')
+	cliente.razonSocial 	= request.form.get('razonSocial',  'Razón social por defecto')
+	cliente.nombreComercial = request.form.get('nombreComercial',  'Nombre Comercial por defecto')
 	cliente.direccion 		= request.form.get('direccion',  'Dirección por defecto')
 	cliente.telefono 		= request.form.get('telefono',  'Teléfono por defecto')
 	cliente.email	 		= request.form.get('email',  'Email por defecto')
+	cliente.password		= request.form.get('password', '1234Secret')
 	cliente.save()
 
 	return 'success create'
